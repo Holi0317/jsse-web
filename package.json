@@ -1,0 +1,27 @@
+{
+  "name": "jsse-web",
+  "version": "1.0.0",
+  "description": "Web frontend for jsse",
+  "main": "index.js",
+  "scripts": {
+    "test": "ava"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Holi0317/jsse-web.git"
+  },
+  "author": "Holi0317 <holliswuhollis@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Holi0317/jsse-web/issues"
+  },
+  "homepage": "https://github.com/Holi0317/jsse-web#readme",
+  "devDependencies": {
+    "ava": "0.20.0"
+  },
+  "dependencies": {
+    "react": "15.6.1",
+    "react-redux": "5.0.5",
+    "redux": "3.7.1"
+  }
+}
