@@ -25,4 +25,4 @@ function Root() {
   )
 }
 
-ReactDOM.render(<Root />, document.body)
+ReactDOM.render(<Root />, document.querySelector('.root'))
