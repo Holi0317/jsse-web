@@ -1,6 +1,5 @@
 import * as React from 'react'
-import * as firebase from 'firebase/app'
-const messaging = firebase.messaging()
+import {requestMessagingPermission} from '../request-messaging-permission'
 
 function isSupported() {
   return window.PushManager && navigator.serviceWorker && Notification
@@ -18,9 +17,7 @@ export class NotifySettings extends React.PureComponent {
 
   requestPermission = async () => {
     try {
-      await messaging.requestPermission()
-      const token = await messaging.getToken()
-      // TODO save token to realtime database
+      await requestMessagingPermission()
     } catch (e) {
       console.log('Error when requesting permission.', e)
       this.setState({
