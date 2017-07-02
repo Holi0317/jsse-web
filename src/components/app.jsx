@@ -3,6 +3,7 @@ import {Webcam} from './webcam'
 import {Status} from './status'
 import {Log} from './log'
 import {NotifySettings} from './notify-settings'
+import {HttpsRedirect} from './https-redirect'
 
 export function App() {
   return (
@@ -16,6 +17,8 @@ export function App() {
       <Log />
       <h3>Notification settings</h3>
       <NotifySettings />
+
+      <HttpsRedirect />
     </div>
   )
 }
