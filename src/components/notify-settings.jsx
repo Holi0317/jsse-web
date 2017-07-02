@@ -1,4 +1,6 @@
 import * as React from 'react'
+import * as firebase from 'firebase/app'
+const messaging = firebase.messaging()
 
 function isSupported() {
   return window.PushManager && navigator.serviceWorker && Notification
@@ -9,19 +11,27 @@ export class NotifySettings extends React.PureComponent {
     super(...arguments)
     this.state = {
       supported: isSupported(),
-      permission: Notification.permission
+      permission: Notification.permission,
+      error: null
     }
   }
 
   requestPermission = async () => {
-    const result = await Notification.requestPermission()
-    this.setState({
-      permission: result
-    })
+    try {
+      await messaging.requestPermission()
+      const token = await messaging.getToken()
+      // TODO save token to realtime database
+    } catch (e) {
+      console.log('Error when requesting permission.', e)
+      this.setState({
+        permission: Notification.permission,
+        error: 'Error when requesting permission. See log for details.'
+      })
+    }
   }
 
   render() {
-    const {supported, permission} = this.state
+    const {supported, permission, error} = this.state
     if (!supported) {
       return <span>Push notification is not supported.</span>
     }
@@ -30,6 +40,9 @@ export class NotifySettings extends React.PureComponent {
     }
     if (permission === 'default') {
       return <button onClick={this.requestPermission}>Enable Notification</button>
+    }
+    if (error) {
+      return <span>{error}</span>
     }
 
     return null
