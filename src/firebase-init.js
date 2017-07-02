@@ -5,10 +5,11 @@ import 'firebase/messaging'
 
 const config = {
   apiKey: 'AIzaSyABL_RzS1xsUMSpVMY18LI24-yHV6LETjQ',
-  authDomain: '<PROJECT_ID>.firebaseapp.com',
-  databaseURL: 'https://<DATABASE_NAME>.firebaseio.com',
-  storageBucket: '<BUCKET>.appspot.com',
-  messagingSenderId: '<SENDER_ID>'
+  authDomain: 'jsse-2017.firebaseapp.com',
+  databaseURL: 'https://jsse-2017.firebaseio.com',
+  projectId: 'jsse-2017',
+  storageBucket: 'jsse-2017.appspot.com',
+  messagingSenderId: '277806525803'
 }
 
 firebase.initializeApp(config)
