@@ -2,9 +2,24 @@
   "name": "jsse-web",
   "version": "1.0.0",
   "description": "Web frontend for jsse",
-  "main": "index.js",
+  "main": "dist/main.js",
   "scripts": {
-    "test": "ava"
+    "lint": "npm run lint:js",
+    "lint:js": "eslint --ext .jsx,.js --cache webpack-cfg test webpack.config.js src",
+    "clean": "del-cli dist",
+    "build": "npm run build:dev",
+    "prebuild:dev": "npm run clean",
+    "build:dev": "cross-env NODE_ENV=development npm run webpack -- --progress --profile",
+    "prebuild:prod": "npm run clean",
+    "build:prod": "cross-env NODE_ENV=production npm run webpack -- --progress --profile",
+    "build-splash-css": "postcss splash.css --no-map -u cssnano postcss-cssnext",
+    "start": "npm run server:dev",
+    "server": "npm run server:dev",
+    "server:dev": "cross-env NODE_ENV=development npm run webpack-dev-server -- --inline --progress --profile --watch",
+    "server:prod": "serve -s -p 8080 dist",
+    "webpack": "webpack",
+    "webpack-dev-server": "webpack-dev-server",
+    "ci": "npm run lint"
   },
   "repository": {
     "type": "git",
@@ -17,11 +32,42 @@
   },
   "homepage": "https://github.com/Holi0317/jsse-web#readme",
   "devDependencies": {
-    "ava": "0.20.0"
+    "babel-core": "6.25.0",
+    "babel-eslint": "7.2.3",
+    "babel-loader": "7.1.1",
+    "babel-plugin-transform-es2015-modules-commonjs": "6.24.1",
+    "babel-plugin-transform-export-extensions": "6.22.0",
+    "babel-plugin-transform-react-remove-prop-types": "0.4.6",
+    "babel-preset-babili": "0.1.4",
+    "babel-preset-es2016": "6.24.1",
+    "babel-preset-es2017": "6.24.1",
+    "babel-preset-react": "6.24.1",
+    "babel-preset-stage-1": "6.24.1",
+    "babili-webpack-plugin": "0.1.2",
+    "copy-webpack-plugin": "4.0.1",
+    "cross-env": "5.0.1",
+    "css-loader": "0.28.4",
+    "del-cli": "1.1.0",
+    "eslint": "4.1.1",
+    "extract-text-webpack-plugin": "2.1.2",
+    "html-webpack-plugin": "2.29.0",
+    "postcss-cli": "4.1.0",
+    "postcss-import": "10.0.0",
+    "postcss-loader": "2.0.6",
+    "postcss-nesting": "4.0.1",
+    "postcss-reporter": "4.0.0",
+    "style-loader": "0.18.2",
+    "webpack": "3.0.0",
+    "webpack-bundle-analyzer": "2.8.2",
+    "webpack-dev-server": "2.5.0",
+    "webpack-md5-hash": "0.0.5",
+    "webpack-merge": "4.1.0",
+    "yaml-loader": "0.4.0"
   },
   "dependencies": {
     "react": "15.6.1",
     "react-redux": "5.0.5",
-    "redux": "3.7.1"
+    "redux": "3.7.1",
+    "redux-logger": "3.0.6"
   }
 }

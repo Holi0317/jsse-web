@@ -1,0 +1,84 @@
+---
+parser: babel-eslint
+parserOptions:
+  ecmaVersion: 2017
+  sourceType: module
+  ecmaFeatures:
+    jsx: true
+    experimentalObjectRestSpread: true
+env:
+  browser: true
+  node: true
+  commonjs: true
+
+plugins:
+ - react
+ - flowtype
+ - ava
+
+settings:
+  react:
+    pragma: h
+
+extends:
+ - eslint:recommended
+ - plugin:react/recommended
+ - plugin:ava/recommended
+ - plugin:flowtype/recommended
+
+rules:
+  no-template-curly-in-string: warn
+  array-callback-return: error
+  curly: error
+  dot-location:
+   - warn
+   - property
+  dot-notation: error
+  eqeqeq:
+   - error
+   - smart
+  no-return-await: warn
+  yoda:
+   - error
+   - never
+   - exceptRange: true
+  semi:
+   - error
+   - never
+  indent:
+   - error
+   - 2
+  keyword-spacing: error
+  arrow-spacing: error
+  quotes:
+   - error
+   - single
+   - allowTemplateLiterals: false
+     avoidEscape: true
+  prefer-const: error
+  array-bracket-spacing: error
+  comma-spacing: error
+  capitalized-comments:
+   - error
+   - always
+   - {ignorePattern: webpackChunkName}
+  brace-style: error
+  no-throw-literal: error
+  no-return-assign: error
+  no-multi-str: error
+  no-multi-spaces: error
+  space-infix-ops: error
+  space-unary-ops: error
+  no-loop-func: error
+  no-floating-decimal: error
+  comma-dangle: error
+  object-curly-spacing: error
+  no-console: off
+
+  jsx-quotes: error
+  react/prop-types: off
+
+  flowtype/delimiter-dangle: error
+  flowtype/semi:
+   - error
+   - never
