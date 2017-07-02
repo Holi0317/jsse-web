@@ -13,18 +13,10 @@ env:
 
 plugins:
  - react
- - flowtype
- - ava
-
-settings:
-  react:
-    pragma: h
 
 extends:
  - eslint:recommended
  - plugin:react/recommended
- - plugin:ava/recommended
- - plugin:flowtype/recommended
 
 rules:
   no-template-curly-in-string: warn
@@ -77,8 +69,3 @@ rules:
 
   jsx-quotes: error
   react/prop-types: off
-
-  flowtype/delimiter-dangle: error
-  flowtype/semi:
-   - error
-   - never
