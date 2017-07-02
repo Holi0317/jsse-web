@@ -2,9 +2,9 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import {Provider} from 'react-redux'
 import {createStore, compose, applyMiddleware} from 'redux'
+import './firebase-init'
 import {reducer} from './reducer/index'
 import {App} from './components/app'
-import './firebase-init'
 
 const middlewares = []
 
