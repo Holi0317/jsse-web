@@ -24,6 +24,7 @@ export class NotifySettings extends React.PureComponent {
         permission: Notification.permission,
         error: 'Error when requesting permission. See log for details.'
       })
+      throw e
     }
   }
 
@@ -32,16 +33,12 @@ export class NotifySettings extends React.PureComponent {
     if (!supported) {
       return <span>Push notification is not supported.</span>
     }
-    if (permission === 'denied') {
-      return <span>Notification is denied. Check <a href="https://support.google.com/chrome/answer/3220216?co=GENIE.Platform%3DDesktop&hl=en">this</a> to enable it</span>
-    }
-    if (permission === 'default') {
-      return <button onClick={this.requestPermission}>Enable Notification</button>
-    }
-    if (error) {
-      return <span>{error}</span>
-    }
-
-    return null
+    return (
+      <div>
+        <div>Notification status: {permission}</div>
+        <button onClick={this.requestPermission}>Register Notification</button>
+        <div>Error: {error}</div>
+      </div>
+    )
   }
 }
