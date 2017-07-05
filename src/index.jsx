@@ -5,6 +5,7 @@ import {createStore, compose, applyMiddleware} from 'redux'
 import './firebase-init'
 import {reducer} from './reducer/index'
 import {App} from './components/app'
+import runtime from 'serviceworker-webpack-plugin/lib/runtime'
 
 const middlewares = []
 
@@ -27,3 +28,8 @@ function Root() {
 }
 
 ReactDOM.render(<Root />, document.querySelector('.root'))
+
+if ('serviceWorker' in navigator) {
+  const registration = runtime.register()
+  console.log(registration)
+}

@@ -13,6 +13,7 @@ const analyzer = require('./webpack-cfg/analyzer')
 const alias = require('./webpack-cfg/alias')
 const yaml = require('./webpack-cfg/yaml')
 const scopeHoisting = require('./webpack-cfg/scope-hoisting')
+const sw = require('./webpack-cfg/service-worker')
 
 const {ENV} = require('./webpack-cfg/paths')
 
@@ -37,6 +38,7 @@ module.exports = merge.smart(
   postCssLoader,
   fontsImagesLoader,
   yaml,
+  sw,
 
   ...(ENV === 'production' || ENV === 'development' ? [
     genIndex,
