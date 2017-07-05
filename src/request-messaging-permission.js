@@ -12,12 +12,13 @@ export async function requestMessagingPermission() {
 
   // Request for permission
   await messaging.requestPermission()
+  console.log('Permission requested')
 
   // Request for a token
   const token = await messaging.getToken()
+  console.log('Token:', token)
 
   // Save token into firebase
   const uid = user.uid
   await database.ref(`fcmToken/${uid}`).set(token)
-  console.log('Token:', token)
 }
