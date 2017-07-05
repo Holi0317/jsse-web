@@ -3,11 +3,7 @@ const messaging = firebase.messaging()
 const database = firebase.database()
 const auth = firebase.auth()
 
-export async function requestMessagingPermission(registration) {
-  // Use our own service worker.
-  const reg = await registration
-  messaging.useServiceWorker(reg)
-
+export async function requestMessagingPermission() {
   // Validate user is login-ed
   const user = auth.currentUser
   if (!user) {

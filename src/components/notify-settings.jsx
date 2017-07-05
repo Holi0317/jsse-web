@@ -28,9 +28,8 @@ class DisconNotifySettings extends React.PureComponent {
   }
 
   requestPermission = async () => {
-    const {sw} = this.props
     try {
-      await requestMessagingPermission(sw)
+      await requestMessagingPermission()
     } catch (e) {
       console.log('Error when requesting permission.', e)
       this.setState({
