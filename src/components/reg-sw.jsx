@@ -4,7 +4,17 @@ import runtime from 'serviceworker-webpack-plugin/lib/runtime'
 import {connect} from 'react-redux'
 const messaging = firebase.messaging()
 
-class DisconRegSW extends React.Component {
+const mapDispatchToProps = dispatch => ({
+  setSW(registration) {
+    dispatch({
+      type: 'SW/SET_SW',
+      sw: registration
+    })
+  }
+})
+
+@connect(null, mapDispatchToProps)
+export class RegSW extends React.Component {
   async componentWillMount() {
     const {setSW} = this.props
     if ('serviceWorker' in navigator) {
@@ -23,14 +33,3 @@ class DisconRegSW extends React.Component {
     return null
   }
 }
-
-const mapDispatchToProps = dispatch => ({
-  setSW(registration) {
-    dispatch({
-      type: 'SW/SET_SW',
-      sw: registration
-    })
-  }
-})
-
-export const RegSW = connect(null, mapDispatchToProps)(DisconRegSW)

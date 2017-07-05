@@ -7,7 +7,12 @@ function isSupported() {
   return window.PushManager && navigator.serviceWorker && Notification
 }
 
-class DisconNotifySettings extends React.PureComponent {
+const mapStateToProps = state => ({
+  sw: sw(state)
+})
+
+@connect(mapStateToProps)
+export class NotifySettings extends React.PureComponent {
   constructor() {
     super(...arguments)
     const {sw} = this.props
@@ -57,9 +62,3 @@ class DisconNotifySettings extends React.PureComponent {
     )
   }
 }
-
-const mapStateToProps = state => ({
-  sw: sw(state)
-})
-
-export const NotifySettings = connect(mapStateToProps)(DisconNotifySettings)
