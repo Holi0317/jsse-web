@@ -5,7 +5,8 @@ import {createStore, compose, applyMiddleware} from 'redux'
 import './firebase-init'
 import {reducer} from './reducer/index'
 import {App} from './components/app'
-import runtime from 'serviceworker-webpack-plugin/lib/runtime'
+import {HttpsRedirect} from './components/https-redirect'
+import {RegSW} from './components/reg-sw'
 
 const middlewares = []
 
@@ -22,14 +23,13 @@ const store = compose(applyMiddleware(...middlewares))(createStore)(reducer)
 function Root() {
   return (
     <Provider store={store}>
-      <App />
+      <div>
+        <App />
+        <HttpsRedirect />
+        <RegSW />
+      </div>
     </Provider>
   )
 }
 
 ReactDOM.render(<Root />, document.querySelector('.root'))
-
-if ('serviceWorker' in navigator) {
-  const registration = runtime.register()
-  console.log(registration)
-}

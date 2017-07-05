@@ -3,7 +3,6 @@ import {Webcam} from './webcam'
 import {Status} from './status'
 import {Log} from './log'
 import {NotifySettings} from './notify-settings'
-import {HttpsRedirect} from './https-redirect'
 import {Login} from './login'
 import * as firebase from 'firebase/app'
 import {Logout} from './logout'
@@ -42,8 +41,6 @@ export class App extends React.Component {
           <NotifySettings />
           <h3>Authentication</h3>
           <Logout />
-
-          <HttpsRedirect />
         </div>
       )
     } else {
@@ -52,8 +49,6 @@ export class App extends React.Component {
           <h1>JSSE PH23 smart mail box</h1>
           <h3>Authentication</h3>
           <Login />
-
-          <HttpsRedirect />
         </div>
       )
     }
