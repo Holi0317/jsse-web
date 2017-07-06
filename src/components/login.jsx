@@ -1,11 +1,13 @@
 import * as React from 'react'
-import * as firebase from 'firebase/app'
-const auth = firebase.auth()
-const provider = new firebase.auth.GoogleAuthProvider()
+import {firebaseConnect} from 'react-redux-firebase'
 
+@firebaseConnect()
 export class Login extends React.Component {
   login = () => {
-    auth.signInWithPopup(provider)
+    this.props.firebase.login({
+      provider: 'google',
+      type: 'popup'
+    })
   }
 
   render() {
