@@ -1,40 +1,34 @@
 import * as React from 'react'
+import {firebaseConnect} from 'react-redux-firebase'
 import {requestMessagingPermission} from '../request-messaging-permission'
 import connect from 'react-redux/es/connect/connect'
-import {sw} from '../selectors/sw'
+import {authSelector} from '../selectors/auth'
+import {uidSelector} from '../selectors/uid'
+import {fcmTokenSelector} from '../selectors/fcm-token'
 
-function isSupported() {
-  return window.PushManager && navigator.serviceWorker && Notification
-}
+const isSupported = window.PushManager && navigator.serviceWorker && Notification
 
 const mapStateToProps = state => ({
-  sw: sw(state)
+  auth: authSelector(state),
+  uid: uidSelector(state),
+  fcmToken: fcmTokenSelector(state)
 })
 
+@firebaseConnect()
 @connect(mapStateToProps)
 export class NotifySettings extends React.PureComponent {
   constructor() {
     super(...arguments)
-    const {sw} = this.props
     this.state = {
-      supported: isSupported(),
       permission: Notification.permission,
-      ready: !!sw,
       error: null
     }
   }
 
-  componentWillReceiveProps(newProps) {
-    if (newProps.sw) {
-      this.setState({
-        ready: true
-      })
-    }
-  }
-
   requestPermission = async () => {
+    const {uid, firebase} = this.props
     try {
-      await requestMessagingPermission()
+      await requestMessagingPermission(uid, firebase.set)
     } catch (e) {
       console.log('Error when requesting permission.', e)
       this.setState({
@@ -46,16 +40,15 @@ export class NotifySettings extends React.PureComponent {
   }
 
   render() {
-    const {supported, ready, permission, error} = this.state
-    if (!supported) {
+    const {fcmToken} = this.props
+    const {permission, error} = this.state
+    if (!isSupported) {
       return <span>Push notification is not supported.</span>
-    }
-    if (!ready) {
-      return <span>Service worker is registering. Please wait.</span>
     }
     return (
       <div>
         <div>Notification status: {permission}</div>
+        <div>FCM Token: {fcmToken}</div>
         <button onClick={this.requestPermission}>Register Notification</button>
         <div>Error: {error}</div>
       </div>

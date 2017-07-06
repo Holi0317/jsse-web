@@ -1,12 +1,9 @@
 import * as firebase from 'firebase/app'
 const messaging = firebase.messaging()
-const database = firebase.database()
-const auth = firebase.auth()
 
-export async function requestMessagingPermission() {
+export async function requestMessagingPermission(uid, set) {
   // Validate user is login-ed
-  const user = auth.currentUser
-  if (!user) {
+  if (!uid) {
     throw new Error('Not authenticated')
   }
 
@@ -19,6 +16,5 @@ export async function requestMessagingPermission() {
   console.log('Token:', token)
 
   // Save token into firebase
-  const uid = user.uid
-  await database.ref(`fcmToken/${uid}`).set(token)
+  await set(`users/${uid}/fcmToken`, token)
 }
