@@ -1,33 +1,21 @@
 import * as React from 'react'
+import {firebaseConnect, pathToJS} from 'react-redux-firebase'
+import {connect} from 'react-redux'
 import {Webcam} from './webcam'
 import {Status} from './status'
 import {Log} from './log'
 import {NotifySettings} from './notify-settings'
 import {Login} from './login'
-import * as firebase from 'firebase/app'
 import {Logout} from './logout'
 
-const auth = firebase.auth()
-
+@firebaseConnect()
+@connect(({firebase}) => ({
+  auth: pathToJS(firebase, 'auth')
+}))
 export class App extends React.Component {
-  constructor() {
-    super(...arguments)
-    this.state = {
-      hasUser: auth.currentUser !== null
-    }
-  }
-
-  componentWillMount() {
-    auth.onAuthStateChanged(user => {
-      this.setState({
-        hasUser: user !== null
-      })
-    })
-  }
-
   render() {
-    const {hasUser} = this.state
-    if (hasUser) {
+    const {auth} = this.props
+    if (auth) {
       return (
         <div>
           <h1>JSSE PH23 smart mail box</h1>
