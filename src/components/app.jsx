@@ -1,5 +1,5 @@
 import * as React from 'react'
-import {firebaseConnect, pathToJS} from 'react-redux-firebase'
+import {firebaseConnect} from 'react-redux-firebase'
 import {connect} from 'react-redux'
 import {Webcam} from './webcam'
 import {Status} from './status'
@@ -7,10 +7,11 @@ import {Log} from './log'
 import {NotifySettings} from './notify-settings'
 import {Login} from './login'
 import {Logout} from './logout'
+import {authSelector} from '../selectors/auth'
 
 @firebaseConnect()
-@connect(({firebase}) => ({
-  auth: pathToJS(firebase, 'auth')
+@connect(state => ({
+  auth: authSelector(state)
 }))
 export class App extends React.Component {
   render() {
