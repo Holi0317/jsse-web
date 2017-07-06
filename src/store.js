@@ -16,7 +16,8 @@ if (process.env.NODE_ENV === 'development') {
 
 // Firebase plugin
 const firebaseConfig = {
-  enableLogging: true
+  enableLogging: true,
+  userProfile: 'users'
 }
 
 export const store = compose(
