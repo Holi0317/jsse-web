@@ -8,6 +8,4 @@ firebase.initializeApp({
   messagingSenderId: '277806525803'
 })
 
-const messaging = firebase.messaging()
-
 console.log('Service worker registered')
