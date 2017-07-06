@@ -3,7 +3,7 @@ import 'firebase/auth'
 import 'firebase/database'
 import 'firebase/messaging'
 
-const config = {
+export const config = {
   apiKey: 'AIzaSyABL_RzS1xsUMSpVMY18LI24-yHV6LETjQ',
   authDomain: 'jsse-2017.firebaseapp.com',
   databaseURL: 'https://jsse-2017.firebaseio.com',

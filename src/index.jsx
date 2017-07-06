@@ -2,7 +2,8 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import {Provider} from 'react-redux'
 import {createStore, compose, applyMiddleware} from 'redux'
-import './firebase-init'
+import {config as firebaseInitCfg} from './firebase-init'
+import {reactReduxFirebase} from 'react-redux-firebase'
 import {reducer} from './reducer/index'
 import {App} from './components/app'
 import {HttpsRedirect} from './components/https-redirect'
@@ -18,7 +19,14 @@ if (process.env.NODE_ENV === 'development') {
   middlewares.push(logger)
 }
 
-const store = compose(applyMiddleware(...middlewares))(createStore)(reducer)
+const firebaseConfig = {
+  enableLogging: true
+}
+
+const store = compose(
+  reactReduxFirebase(firebaseInitCfg, firebaseConfig),
+  applyMiddleware(...middlewares)
+)(createStore)(reducer)
 
 function Root() {
   return (
