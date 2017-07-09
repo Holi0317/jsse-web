@@ -5,6 +5,7 @@ import connect from 'react-redux/es/connect/connect'
 import {authSelector} from '../selectors/auth'
 import {uidSelector} from '../selectors/uid'
 import {fcmTokenSelector} from '../selectors/fcm-token'
+import {TokenRefresher} from './token-refresher'
 
 const isSupported = window.PushManager && navigator.serviceWorker && Notification
 
@@ -51,6 +52,7 @@ export class NotifySettings extends React.PureComponent {
         <div>FCM Token: {fcmToken}</div>
         <button onClick={this.requestPermission}>Register Notification</button>
         <div>Error: {error}</div>
+        <TokenRefresher />
       </div>
     )
   }
