@@ -5,8 +5,8 @@ import {Webcam} from './webcam'
 import {Status} from './status'
 import {Log} from './log'
 import {NotifySettings} from './notify-settings'
-import {Login} from './login'
-import {Logout} from './logout'
+import {Login} from './auth/login'
+import {Logout} from './auth/logout'
 import {authSelector} from '../selectors/auth'
 
 @firebaseConnect()

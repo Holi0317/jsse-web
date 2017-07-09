@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom'
 import {Provider} from 'react-redux'
 import {store} from './store'
 import {App} from './components/app'
-import {HttpsRedirect} from './components/https-redirect'
-import {RegSW} from './components/reg-sw'
+import {HttpsRedirect} from './components/misc/https-redirect'
+import {RegSW} from './components/misc/reg-sw'
 
 function Root() {
   return (

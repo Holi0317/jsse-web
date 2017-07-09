@@ -1,7 +1,7 @@
 import * as React from 'react'
 import {connect} from 'react-redux'
 import {firebaseConnect} from 'react-redux-firebase'
-import {LogEntry} from './log-entry'
+import {LogEntry} from './log/log-entry'
 import {momentedLogsSelector} from '../selectors/momented-logs'
 
 const mapStateToProps = state => ({
