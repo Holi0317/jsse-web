@@ -20,7 +20,7 @@ export class NotificationDisplay extends React.Component {
   }
 
   render() {
-    const {message} = this.props
+    const {message} = this.state
     return <div>Notification message: {message}</div>
   }
 }

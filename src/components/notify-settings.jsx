@@ -1,6 +1,6 @@
 import * as React from 'react'
 import {TokenRefresher} from './notification/token-refresher'
-import {NotificationDisplay} from './notification-display'
+import {NotificationDisplay} from './notification/notification-display'
 import {LocalFcmTokenDisplay} from './notification/local-fcm-token-display'
 import {ResetServiceWorker} from './notification/reset-service-worker'
 import {PermissionStatus} from './notification/permission-status'
