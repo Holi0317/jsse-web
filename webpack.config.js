@@ -11,7 +11,6 @@ const copyFiles = require('./webpack-cfg/copy-files')
 const babili = require('./webpack-cfg/babili')
 const analyzer = require('./webpack-cfg/analyzer')
 const alias = require('./webpack-cfg/alias')
-const yaml = require('./webpack-cfg/yaml')
 const scopeHoisting = require('./webpack-cfg/scope-hoisting')
 const sw = require('./webpack-cfg/service-worker')
 
@@ -37,7 +36,6 @@ module.exports = merge.smart(
   htmlLoader,
   postCssLoader,
   fontsImagesLoader,
-  yaml,
   sw,
 
   ...(ENV === 'production' || ENV === 'development' ? [
