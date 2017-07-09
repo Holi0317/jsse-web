@@ -12,7 +12,7 @@ const mapStateToProps = state => ({
 @firebaseConnect()
 @connect(mapStateToProps)
 export class TokenRefresher extends React.Component {
-  componentWillMount() {
+  async componentWillMount() {
     const {firebase, uid} = this.props
 
     messaging.onTokenRefresh(async () => {
@@ -21,6 +21,13 @@ export class TokenRefresher extends React.Component {
 
       await firebase.set(`users/${uid}/fcmToken`, token)
     })
+
+    // Manual refresh
+    if ('serviceWorker' in navigator) {
+      await navigator.serviceWorker.ready
+      const token = await messaging.getToken()
+      await firebase.set(`users/${uid}/fcmToken`, token)
+    }
   }
 
   render() {

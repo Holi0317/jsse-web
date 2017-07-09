@@ -6,6 +6,8 @@ import {authSelector} from '../selectors/auth'
 import {uidSelector} from '../selectors/uid'
 import {TokenRefresher} from './token-refresher'
 import {shortFcmTokenSelector} from '../selectors/short-fcm-token'
+import {NotificationDisplay} from './notification-display'
+import {FcmTokenDisplay} from './fcm-token-display'
 
 const isSupported = window.PushManager && navigator.serviceWorker && Notification
 
@@ -49,7 +51,9 @@ export class NotifySettings extends React.PureComponent {
     return (
       <div>
         <div>Notification status: {permission}</div>
-        <div>FCM Token: {fcmToken}</div>
+        <div>Local FCM Token: <FcmTokenDisplay /></div>
+        <div>FCM Token on cloud: {fcmToken}</div>
+        <div>Notification message: <NotificationDisplay /></div>
         <button onClick={this.requestPermission}>Register Notification</button>
         <div>Error: {error}</div>
         <TokenRefresher />
