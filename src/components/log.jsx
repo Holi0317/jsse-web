@@ -2,14 +2,14 @@ import * as React from 'react'
 import {connect} from 'react-redux'
 import {firebaseConnect} from 'react-redux-firebase'
 import {LogEntry} from './log-entry'
-import {logsSelector} from '../selectors/logs'
+import {momentedLogsSelector} from '../selectors/momented-logs'
 
 const mapStateToProps = state => ({
-  logs: logsSelector(state)
+  logs: momentedLogsSelector(state)
 })
 
 @firebaseConnect([
-  '/log#orderByChild=time'
+  '/log'
 ])
 @connect(mapStateToProps)
 export class Log extends React.Component {

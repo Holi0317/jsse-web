@@ -1,11 +1,11 @@
 import * as React from 'react'
-import moment from 'moment'
 
 export function LogEntry({message, time}) {
-  const dispTime = moment(time).fromNow()
+  const dispTime = time.fromNow()
+  const alt = time.format('M/D H:m:s')
   return (
     <tr>
-      <td>{dispTime}</td>
+      <td title={alt}>{dispTime}</td>
       <td>{message}</td>
     </tr>
   )
