@@ -1,7 +1,7 @@
 import * as React from 'react'
 import {firebaseConnect} from 'react-redux-firebase'
 import * as firebase from 'firebase/app'
-import {uidSelector} from '../selectors/uid'
+import {uidSelector} from '../../selectors/uid'
 import {connect} from 'react-redux'
 const messaging = firebase.messaging()
 

@@ -2,7 +2,7 @@ import * as React from 'react'
 import * as firebase from 'firebase/app'
 const messaging = firebase.messaging()
 
-export class FcmTokenDisplay extends React.Component {
+export class LocalFcmTokenDisplay extends React.Component {
   constructor() {
     super(...arguments)
     this.state = {
@@ -23,8 +23,8 @@ export class FcmTokenDisplay extends React.Component {
   render() {
     const {token} = this.state
     if (!token) {
-      return <span>Loading</span>
+      return <div>Loading local FCM Token.</div>
     }
-    return <span>{token}</span>
+    return <div>Local FCM Token: {token}</div>
   }
 }

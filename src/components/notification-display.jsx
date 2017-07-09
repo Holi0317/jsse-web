@@ -6,7 +6,7 @@ export class NotificationDisplay extends React.Component {
   constructor() {
     super(...arguments)
     this.state = {
-      notification: ''
+      message: ''
     }
   }
 
@@ -14,12 +14,13 @@ export class NotificationDisplay extends React.Component {
     messaging.onMessage(payload => {
       console.log('Received message. payload:', payload)
       this.setState({
-        notification: payload.notification.body
+        message: payload.notification.body
       })
     })
   }
 
   render() {
-    return null
+    const {message} = this.props
+    return <div>Notification message: {message}</div>
   }
 }
