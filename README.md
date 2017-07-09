@@ -1,5 +1,5 @@
 # web-frontend
-[![Travis](https://img.shields.io/travis/jsse-2017-ph23/web-frontend.svg?style=flat-square)](https://github.com/jsse-2017-ph23/web-frontend)
+[![Travis](https://img.shields.io/travis/jsse-2017-ph23/web-frontend.svg?style=flat-square)](https://travis-ci.org/jsse-2017-ph23/web-frontend)
 
 Web frontend for jsse
 
