@@ -14,7 +14,7 @@ export class NotificationDisplay extends React.Component {
     messaging.onMessage(payload => {
       console.log('Received message. payload:', payload)
       this.setState({
-        notification: 'aaa'
+        notification: payload.notification.body
       })
     })
   }
