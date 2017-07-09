@@ -4,15 +4,15 @@ import {requestMessagingPermission} from '../request-messaging-permission'
 import connect from 'react-redux/es/connect/connect'
 import {authSelector} from '../selectors/auth'
 import {uidSelector} from '../selectors/uid'
-import {fcmTokenSelector} from '../selectors/fcm-token'
 import {TokenRefresher} from './token-refresher'
+import {shortFcmTokenSelector} from '../selectors/short-fcm-token'
 
 const isSupported = window.PushManager && navigator.serviceWorker && Notification
 
 const mapStateToProps = state => ({
   auth: authSelector(state),
   uid: uidSelector(state),
-  fcmToken: fcmTokenSelector(state)
+  fcmToken: shortFcmTokenSelector(state)
 })
 
 @firebaseConnect()
