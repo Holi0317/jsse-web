@@ -1,7 +1,8 @@
 const defaultState = {
   dispTime: null, // Null means the latest. Otherwise this will be a datetime number
   playing: true, // Play or pause
-  tmpTime: null // Selected time on select element. Date object
+  tmpDate: null, // Selected date (No time included) on select element. String
+  tmpHour: null // Selected hour on select element. String
 }
 
 export function footage(state = defaultState, action) {
@@ -16,15 +17,15 @@ export function footage(state = defaultState, action) {
       ...state,
       dispTime: action.dispTime
     }
-  case 'FOOTAGE/SET_TMP_TIME':
+  case 'FOOTAGE/SET_TMP_DATE':
     return {
       ...state,
-      tmpTime: action.tmpTime
+      tmpDate: action.tmpDate
     }
-  case 'FOOTAGE/USE_TMP_TIME':
+  case 'FOOTAGE/SET_TMP_HOUR':
     return {
       ...state,
-      dispTime: state.tmpTime
+      tmpHour: action.tmpHour
     }
   default:
     return state

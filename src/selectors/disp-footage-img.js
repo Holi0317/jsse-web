@@ -7,5 +7,5 @@ import {dispFootageSelector} from './disp-footage'
 export const dispFootageImgSelector = createSelector(
   dispFootageSelector,
   footage =>
-    footage ? footage.path : null
+    footage ? footage.url : null
 )
