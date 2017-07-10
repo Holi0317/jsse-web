@@ -3,24 +3,28 @@ import {connect} from 'react-redux'
 import {firebaseConnect} from 'react-redux-firebase'
 import {TimeSelector} from './time-selector'
 
-const mapStateToProps = state => ({
-
-})
-
 const mapDispatchToProps = dispatch => ({
-
+  changeTime() {
+    dispatch({type: 'FOOTAGE/USE_TMP_TIME'})
+  }
 })
 
 @firebaseConnect([
   '/footage'
 ])
-@connect(mapStateToProps, mapDispatchToProps)
+@connect(null, mapDispatchToProps)
 export class TimelineJump extends React.Component {
   render() {
+    const {changeTime} = this.props
     return (
       <div>
-        <span>Go To</span>
-        <TimeSelector />
+        <div>
+          <span>Go To</span>
+          <TimeSelector />
+        </div>
+        <div>
+          <button onClick={changeTime}>Go</button>
+        </div>
       </div>
     )
   }

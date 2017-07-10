@@ -21,6 +21,11 @@ export function footage(state = defaultState, action) {
       ...state,
       tmpTime: action.tmpTime
     }
+  case 'FOOTAGE/USE_TMP_TIME':
+    return {
+      ...state,
+      dispTime: state.tmpTime
+    }
   default:
     return state
   }
