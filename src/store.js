@@ -1,5 +1,5 @@
 import {applyMiddleware, compose, createStore} from 'redux'
-import {config as firebaseInitCfg} from './firebase-init'
+import * as firebase from 'firebase/app'
 import {reducer} from './reducer'
 import {reactReduxFirebase} from 'react-redux-firebase'
 
@@ -21,6 +21,6 @@ const firebaseConfig = {
 }
 
 export const store = compose(
-  reactReduxFirebase(firebaseInitCfg, firebaseConfig),
+  reactReduxFirebase(firebase, firebaseConfig),
   applyMiddleware(...middlewares)
 )(createStore)(reducer)

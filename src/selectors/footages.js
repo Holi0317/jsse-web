@@ -1,8 +1,7 @@
 import {createSelector} from 'reselect'
-import {dataToJS} from 'react-redux-firebase'
 
 const disorderFootageSelector = createSelector(
-  state => dataToJS(state.firebase, 'footage'),
+  state => state.firebase.data.footage,
   footages => (
     Object.entries(footages || {}).map(([, footage]) =>
       footage

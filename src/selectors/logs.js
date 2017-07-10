@@ -1,8 +1,7 @@
 import {createSelector} from 'reselect'
-import {dataToJS} from 'react-redux-firebase'
 
 export const logsSelector = createSelector(
-  state => dataToJS(state.firebase, 'log'),
+  state => state.firebase.data.log,
   logs => (
     Object.entries(logs || {}).map(([, log]) =>
       log
