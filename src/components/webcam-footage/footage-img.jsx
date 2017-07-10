@@ -17,7 +17,7 @@ export class FootageImg extends React.Component {
   render() {
     const {imgUrl, time} = this.props
     if (imgUrl && time) {
-      return <img src={imgUrl} alt={time.calendar()} />
+      return <img height="480px" src={imgUrl} alt={time.calendar()} />
     }
     return null
   }
