@@ -10,7 +10,7 @@ const mapStateToProps = state => ({
   '/footage'
 ])
 @connect(mapStateToProps)
-export class TimelineJump extends React.Component {
+export class PlaybackRunner extends React.Component {
   render() {
     return null
   }
