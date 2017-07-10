@@ -1,12 +1,12 @@
 import * as React from 'react'
 import {connect} from 'react-redux'
 import {firebaseConnect} from 'react-redux-firebase'
-import {footageImgSelector} from '../../selectors/footage-img'
-import {footageTimeSelector} from '../../selectors/footage-time'
+import {dispFootageImgSelector} from '../../selectors/disp-footage-img'
+import {dispFootageTimeSelector} from '../../selectors/disp-footage-time'
 
 const mapStateToProps = state => ({
-  imgUrl: footageImgSelector(state),
-  time: footageTimeSelector(state)
+  imgUrl: dispFootageImgSelector(state),
+  time: dispFootageTimeSelector(state)
 })
 
 @firebaseConnect([
