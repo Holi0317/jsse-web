@@ -10,9 +10,9 @@ export function Webcam() {
     <div>
       <FootageImg />
       <TimeDisp />
+      <PlaybackRunner />
       <PlaybackAction />
       <TimelineJump />
-      <PlaybackRunner />
     </div>
   )
 }
