@@ -66,6 +66,8 @@ rules:
   comma-dangle: error
   object-curly-spacing: error
   no-console: off
+  linebreak-style: error
+  eol-last: error
 
   jsx-quotes: error
   react/prop-types: off
