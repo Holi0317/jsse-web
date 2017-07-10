@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {firebaseConnect} from 'react-redux-firebase'
 import {availableDatesSelector} from '../../selectors/available-dates'
 import {tmpDateSelector} from '../../selectors/tmp-date'
-import {availableHoursSelector} from '../../selectors/availabel-hours'
+import {availableHoursSelector} from '../../selectors/available-hours'
 import {SelectOptions} from '../select-options'
 
 const mapStateToProps = state => ({
