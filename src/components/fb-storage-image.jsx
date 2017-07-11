@@ -27,8 +27,10 @@ export class FBStorageImage extends React.Component {
 
   render() {
     const {src} = this.state
+    // eslint-disable-next-line no-unused-vars
+    const {path, ...rest} = this.props
     if (src) {
-      return <img {...this.props} src={src} />
+      return <img {...rest} src={src} />
     }
     return null
   }
