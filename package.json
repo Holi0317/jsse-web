@@ -4,8 +4,9 @@
   "description": "Web frontend for jsse",
   "main": "dist/main.js",
   "scripts": {
-    "lint": "npm run lint:js",
+    "lint": "npm run lint:js && npm run lint:ts",
     "lint:js": "eslint --ext .jsx,.js --cache webpack-cfg test webpack.config.js src",
+    "lint:ts": "tslint src",
     "clean": "del-cli dist",
     "build": "npm run build:dev",
     "prebuild:dev": "npm run clean",
@@ -32,6 +33,7 @@
   },
   "homepage": "https://github.com/Holi0317/jsse-web#readme",
   "devDependencies": {
+    "awesome-typescript-loader": "3.2.1",
     "babel-core": "6.25.0",
     "babel-eslint": "7.2.3",
     "babel-loader": "7.1.1",
@@ -59,6 +61,8 @@
     "serve": "6.0.2",
     "serviceworker-webpack-plugin": "0.2.3",
     "style-loader": "0.18.2",
+    "tslint": "5.5.0",
+    "typescript": "2.4.1",
     "uglify-es": "3.0.24",
     "uglifyjs-webpack-plugin": "1.0.0-beta.1",
     "webpack": "3.1.0",
