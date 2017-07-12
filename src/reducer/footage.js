@@ -14,7 +14,8 @@ export function footage(state = defaultState, action) {
   case 'FOOTAGE/SET_TMP_DATE':
     return {
       ...state,
-      tmpDate: action.tmpDate
+      tmpDate: action.tmpDate,
+      tmpHour: null
     }
   case 'FOOTAGE/SET_TMP_HOUR':
     return {

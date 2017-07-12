@@ -1,11 +1,11 @@
 import * as React from 'react'
 
-export function SelectOptions({options, label, onChange}) {
+export function SelectOptions({options, label, selected, onChange}) {
   return (
-    <select onChange={onChange}>
-      <option default disabled label={label} />
-      {options.map((opt, index) => (
-        <option key={index} {...opt} />
+    <select value={selected || 'label'} onChange={onChange}>
+      <option disabled label={label} value="label" />
+      {options.map((opt, i) => (
+        <option key={i} {...opt} />
       ))}
     </select>
   )

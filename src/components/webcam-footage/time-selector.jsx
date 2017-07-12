@@ -5,11 +5,13 @@ import {availableDatesSelector} from '../../selectors/available-dates'
 import {tmpDateSelector} from '../../selectors/tmp-date'
 import {availableHoursSelector} from '../../selectors/available-hours'
 import {SelectOptions} from '../select-options'
+import {tmpHourSelector} from '../../selectors/tmp-hour'
 
 const mapStateToProps = state => ({
   tmpDate: tmpDateSelector(state),
   dates: availableDatesSelector(state),
-  hours: availableHoursSelector(state)
+  hours: availableHoursSelector(state),
+  tmpHour: tmpHourSelector(state)
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -29,12 +31,12 @@ const mapDispatchToProps = dispatch => ({
 @connect(mapStateToProps, mapDispatchToProps)
 export class TimeSelector extends React.Component {
   render() {
-    const {dates, hours, tmpDate, setDay, setHour} = this.props
+    const {dates, hours, tmpHour, tmpDate, setDay, setHour} = this.props
 
     return (
       <span>
         <input type="date" {...dates} value={tmpDate} onChange={setDay} />
-        <SelectOptions label="Hour" options={hours} onChange={setHour} />
+        <SelectOptions label="Hour" options={hours} onChange={setHour} selected={tmpHour} />
       </span>
     )
   }
