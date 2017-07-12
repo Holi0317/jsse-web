@@ -1,14 +1,11 @@
 import * as React from 'react'
 import {firebaseConnect} from 'react-redux-firebase'
 import {connect} from 'react-redux'
-import {Webcam} from './webcam'
-import {Status} from './status'
-import {Log} from './log'
-import {NotifySettings} from './notify-settings'
-import {Login} from './auth/login'
-import {Logout} from './auth/logout'
+import AppBar from 'material-ui/AppBar'
 import {authSelector} from '../selectors/auth'
 import styles from '../styles.css'
+import {AuthView} from './auth-view'
+import {UnAuthView} from './un-auth-view'
 
 @firebaseConnect()
 @connect(state => ({
@@ -17,31 +14,13 @@ import styles from '../styles.css'
 export class App extends React.Component {
   render() {
     const {auth} = this.props
-    if (auth.isEmpty) {
-      return (
+    return (
+      <div>
+        <AppBar title="JSSE PH23 smart mail box" showMenuIconButton={false} />
         <div className={styles.container}>
-          <h1>JSSE PH23 smart mail box</h1>
-          <h3>Authentication</h3>
-          <Login />
+          {auth.isEmpty ? <UnAuthView /> : <AuthView />}
         </div>
-      )
-    } else {
-      return (
-        <div className={styles.container}>
-          <h1>JSSE PH23 smart mail box</h1>
-          <h3>Webcam footage</h3>
-          <Webcam />
-          <h3>Current status</h3>
-          <Status />
-          <h3>Mail Log</h3>
-          <Log />
-          <h3>Notification settings</h3>
-          <NotifySettings />
-          <h3>Authentication</h3>
-          <Logout />
-        </div>
-      )
-    }
-
+      </div>
+    )
   }
 }

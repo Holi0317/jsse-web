@@ -2,6 +2,8 @@ import * as React from 'react'
 import moment from 'moment'
 import {connect} from 'react-redux'
 import {firebaseConnect} from 'react-redux-firebase'
+import RaisedButton from 'material-ui/RaisedButton'
+import Snackbar from 'material-ui/Snackbar'
 import {TimeSelector} from './time-selector'
 import {footageSelector} from '../../selectors/footages'
 import {tmpDateSelector} from '../../selectors/tmp-date'
@@ -27,11 +29,23 @@ const mapDispatchToProps = dispatch => ({
 ])
 @connect(mapStateToProps, mapDispatchToProps)
 export class TimelineJump extends React.Component {
+  state = {
+    error: null
+  }
+
+  handleRequestClose = () => {
+    this.setState({
+      error: null
+    })
+  }
+
   changeTime = () => {
     const {footages, tmpDate, tmpHour, changeTime} = this.props
 
     if (!(tmpDate && tmpHour)) {
-      alert('You must specify both date and hour before jump timeline.') // Its blocking. But I have no time.
+      this.setState({
+        error: 'You must specify both date and hour before jump timeline'
+      })
       return
     }
 
@@ -43,6 +57,8 @@ export class TimelineJump extends React.Component {
   }
 
   render() {
+    const {error} = this.state
+
     return (
       <div>
         <div>
@@ -50,8 +66,9 @@ export class TimelineJump extends React.Component {
           <TimeSelector />
         </div>
         <div>
-          <button onClick={this.changeTime}>Go</button>
+          <RaisedButton label="Go" primary={true} onClick={this.changeTime} />
         </div>
+        <Snackbar open={!!error} message={error || ''} autoHideDuration={4000} onRequestClose={this.handleRequestClose} />
       </div>
     )
   }

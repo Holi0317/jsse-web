@@ -1,0 +1,11 @@
+.select {
+    margin-left: 1em;
+}
+
+.select, .date-input {
+    padding: .5rem .75rem;
+    font-size: 1rem;
+    background-color: #fff;
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: .25rem;
+}

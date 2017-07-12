@@ -1,5 +1,6 @@
 import * as React from 'react'
 import {firebaseConnect} from 'react-redux-firebase'
+import FlatButton from 'material-ui/FlatButton'
 
 @firebaseConnect()
 export class Logout extends React.Component {
@@ -9,7 +10,7 @@ export class Logout extends React.Component {
 
   render() {
     return (
-      <button onClick={this.logout}>Logout</button>
+      <FlatButton label="Logout" onClick={this.logout} />
     )
   }
 }

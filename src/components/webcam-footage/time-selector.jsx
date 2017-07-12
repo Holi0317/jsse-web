@@ -6,6 +6,7 @@ import {tmpDateSelector} from '../../selectors/tmp-date'
 import {availableHoursSelector} from '../../selectors/available-hours'
 import {SelectOptions} from '../select-options'
 import {tmpHourSelector} from '../../selectors/tmp-hour'
+import styles from './time-selector.css'
 
 const mapStateToProps = state => ({
   tmpDate: tmpDateSelector(state),
@@ -35,8 +36,8 @@ export class TimeSelector extends React.Component {
 
     return (
       <span>
-        <input type="date" {...dates} value={tmpDate} onChange={setDay} />
-        <SelectOptions label="Hour" options={hours} onChange={setHour} selected={tmpHour} />
+        <input type="date" className={styles.dateInput} {...dates} value={tmpDate} onChange={setDay} />
+        <SelectOptions label="Hour" className={styles.select} options={hours} onChange={setHour} selected={tmpHour} />
       </span>
     )
   }

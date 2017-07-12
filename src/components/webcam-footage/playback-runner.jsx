@@ -1,8 +1,10 @@
 import * as React from 'react'
 import {connect} from 'react-redux'
 import {firebaseConnect} from 'react-redux-firebase'
+import FlatButton from 'material-ui/FlatButton'
 import {dispFootageTimeSelector} from '../../selectors/disp-footage-time'
 import {availableTimeSelector} from '../../selectors/available-time'
+import styles from './playback-runner.css'
 
 const mapStateToProps = state => ({
   dispTime: dispFootageTimeSelector(state), // Moment | null
@@ -52,8 +54,8 @@ export class PlaybackRunner extends React.Component {
   render() {
     return (
       <div>
-        <button onClick={this.back}>&lt;-</button>
-        <button onClick={this.forward}>-&gt;</button>
+        <FlatButton label="<-" onClick={this.back} />
+        <FlatButton label="->" onClick={this.forward} className={styles.forwardBtn} />
       </div>
     )
   }

@@ -1,6 +1,7 @@
 import * as React from 'react'
 import {connect} from 'react-redux'
 import {firebaseConnect} from 'react-redux-firebase'
+import RaisedButton from 'material-ui/RaisedButton'
 import {statusSelector} from '../selectors/status'
 import {mailCountSelector} from '../selectors/mail-count'
 
@@ -26,7 +27,7 @@ export class Status extends React.Component {
       <div>
         <div>Status: {status}</div>
         <div>Number of mail: {mailCount}</div>
-        <button onClick={this.resetMail}>Reset number of mail</button>
+        <RaisedButton label="Reset number of mail" secondary={true} onClick={this.resetMail} />
       </div>
     )
   }

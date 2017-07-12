@@ -19,7 +19,7 @@ export class FootageImg extends React.Component {
   render() {
     const {imgPath, time} = this.props
     if (imgPath && time) {
-      return <FBStorageImage height="480px" path={imgPath} alt={time.calendar()} />
+      return <FBStorageImage height="480px" width="720px" path={imgPath} alt={time.calendar()} />
     }
     return null
   }

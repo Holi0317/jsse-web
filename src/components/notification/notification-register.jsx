@@ -1,6 +1,7 @@
 import * as React from 'react'
 import {connect} from 'react-redux'
 import {firebaseConnect} from 'react-redux-firebase'
+import RaisedButton from 'material-ui/RaisedButton'
 import {requestMessagingPermission} from '../../request-messaging-permission'
 import {uidSelector} from '../../selectors/uid'
 
@@ -32,7 +33,7 @@ export class NotificationRegister extends React.Component {
     const {error} = this.state
     return (
       <div>
-        <button onClick={this.requestPermission}>Register Notification</button>
+        <RaisedButton label="Register Notification" secondary={true} onClick={this.requestPermission} />
         {error ? <div>Register error: {error}</div> : null}
       </div>
     )

@@ -1,4 +1,5 @@
 import * as React from 'react'
+import FlatButton from 'material-ui/FlatButton'
 
 export class ResetServiceWorker extends React.Component {
   async unreg() {
@@ -13,6 +14,6 @@ export class ResetServiceWorker extends React.Component {
   }
 
   render() {
-    return <button onClick={this.unreg}>Reset service workers</button>
+    return <FlatButton label="Reset service workers" onClick={this.unreg} />
   }
 }

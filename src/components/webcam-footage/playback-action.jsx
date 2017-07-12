@@ -1,6 +1,7 @@
 import * as React from 'react'
 import {connect} from 'react-redux'
 import {firebaseConnect} from 'react-redux-firebase'
+import FlatButton from 'material-ui/FlatButton'
 
 const mapDispatchToProps = dispatch => ({
   showLatest() {
@@ -20,7 +21,7 @@ export class PlaybackAction extends React.Component {
     const {showLatest} = this.props
     return (
       <div>
-        <button onClick={showLatest}>Show latest photo</button>
+        <FlatButton label="Show latest photo" onClick={showLatest} />
       </div>
     )
   }

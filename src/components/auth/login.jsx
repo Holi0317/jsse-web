@@ -1,5 +1,6 @@
 import * as React from 'react'
 import {firebaseConnect} from 'react-redux-firebase'
+import RaisedButton from 'material-ui/RaisedButton'
 
 @firebaseConnect()
 export class Login extends React.Component {
@@ -12,7 +13,7 @@ export class Login extends React.Component {
 
   render() {
     return (
-      <button onClick={this.login}>Login with Google</button>
+      <RaisedButton label="Login with Google" primary={true} onClick={this.login} />
     )
   }
 }
