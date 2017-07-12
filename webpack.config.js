@@ -8,7 +8,7 @@ const postCssLoader = require('./webpack-cfg/postcss')
 const fontsImagesLoader = require('./webpack-cfg/fonts-images-loader')
 const genIndex = require('./webpack-cfg/gen-index')
 const copyFiles = require('./webpack-cfg/copy-files')
-const babili = require('./webpack-cfg/babili')
+const uglify = require('./webpack-cfg/uglify')
 const analyzer = require('./webpack-cfg/analyzer')
 const alias = require('./webpack-cfg/alias')
 const scopeHoisting = require('./webpack-cfg/scope-hoisting')
@@ -48,7 +48,7 @@ module.exports = merge.smart(
   ...(ENV === 'production' ? [
     analyzer,
     scopeHoisting,
-    babili
+    uglify
   ] : [
 
   ])
