@@ -7,7 +7,7 @@ module.exports = {
       removeConsole: false,
       removeDebugger: true
     }, {
-      sourceMap: ENV === 'production' ? 'hidden-source-map' : 'inline-source-map',
+      sourceMap: ENV === 'production' ? 'hidden-source-map' : 'inline-source-map'
     })
   ]
 }
