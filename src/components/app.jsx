@@ -8,6 +8,7 @@ import {NotifySettings} from './notify-settings'
 import {Login} from './auth/login'
 import {Logout} from './auth/logout'
 import {authSelector} from '../selectors/auth'
+import styles from '../styles.css'
 
 @firebaseConnect()
 @connect(state => ({
@@ -18,7 +19,7 @@ export class App extends React.Component {
     const {auth} = this.props
     if (auth.isEmpty) {
       return (
-        <div>
+        <div className={styles.container}>
           <h1>JSSE PH23 smart mail box</h1>
           <h3>Authentication</h3>
           <Login />
@@ -26,7 +27,7 @@ export class App extends React.Component {
       )
     } else {
       return (
-        <div>
+        <div className={styles.container}>
           <h1>JSSE PH23 smart mail box</h1>
           <h3>Webcam footage</h3>
           <Webcam />
