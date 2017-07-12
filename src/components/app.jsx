@@ -16,7 +16,15 @@ import {authSelector} from '../selectors/auth'
 export class App extends React.Component {
   render() {
     const {auth} = this.props
-    if (auth) {
+    if (auth.isEmpty) {
+      return (
+        <div>
+          <h1>JSSE PH23 smart mail box</h1>
+          <h3>Authentication</h3>
+          <Login />
+        </div>
+      )
+    } else {
       return (
         <div>
           <h1>JSSE PH23 smart mail box</h1>
@@ -30,14 +38,6 @@ export class App extends React.Component {
           <NotifySettings />
           <h3>Authentication</h3>
           <Logout />
-        </div>
-      )
-    } else {
-      return (
-        <div>
-          <h1>JSSE PH23 smart mail box</h1>
-          <h3>Authentication</h3>
-          <Login />
         </div>
       )
     }
