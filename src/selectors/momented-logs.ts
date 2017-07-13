@@ -1,5 +1,5 @@
 import {createSelector} from 'reselect'
-import moment from 'moment'
+import * as moment from 'moment'
 import {sortedLogsSelector} from './sorted-logs'
 
 export const momentedLogsSelector = createSelector(

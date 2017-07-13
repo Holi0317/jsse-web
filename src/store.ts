@@ -21,7 +21,7 @@ const firebaseConfig = {
   userProfile: 'users'
 }
 
-export const store = compose(
-  reactReduxFirebase(firebase, firebaseConfig),
+export const store = (compose as any)(
+  (reactReduxFirebase as any)(firebase, firebaseConfig),
   applyMiddleware(...middlewares)
 )(createStore)(reducer)

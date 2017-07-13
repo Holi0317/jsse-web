@@ -1,6 +1,7 @@
 import {createSelector} from 'reselect'
 import {footageSelector} from './footages'
-import {dispTimeSelector} from './dispTime'
+import {dispTimeSelector} from './disp-time'
+import {IFootage} from '../types'
 
 /**
  * Select the footage object to be displayed.
@@ -9,7 +10,7 @@ import {dispTimeSelector} from './dispTime'
 export const dispFootageSelector = createSelector(
   dispTimeSelector,
   footageSelector,
-  (dispTime, footages) => {
+  (dispTime: number, footages: IFootage[]): IFootage | null => {
     if (!dispTime) {
       return footages[footages.length - 1] || null
     }

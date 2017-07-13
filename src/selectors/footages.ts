@@ -1,9 +1,11 @@
+import toPairs from 'lodash-es/toPairs'
 import {createSelector} from 'reselect'
+import {IFootage, IRootState} from '../types'
 
 const disorderFootageSelector = createSelector(
-  state => state.firebase.data.footage,
-  footages => (
-    Object.entries(footages || {}).map(([, footage]) =>
+  (state: IRootState) => state.firebase.data.footage,
+  (footages): IFootage[] => (
+    toPairs(footages || {}).map(([, footage]) =>
       footage
     )
   )

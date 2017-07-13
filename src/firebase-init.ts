@@ -8,9 +8,9 @@ export const config = {
   apiKey: 'AIzaSyABL_RzS1xsUMSpVMY18LI24-yHV6LETjQ',
   authDomain: 'jsse-2017.firebaseapp.com',
   databaseURL: 'https://jsse-2017.firebaseio.com',
+  messagingSenderId: '277806525803',
   projectId: 'jsse-2017',
-  storageBucket: 'jsse-2017.appspot.com',
-  messagingSenderId: '277806525803'
+  storageBucket: 'jsse-2017.appspot.com'
 }
 
 firebase.initializeApp(config)

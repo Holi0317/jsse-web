@@ -1,7 +1,7 @@
 import * as firebase from 'firebase/app'
 const messaging = firebase.messaging()
 
-export async function requestMessagingPermission(uid, set) {
+export async function requestMessagingPermission(uid: string, set: (path: string, value: any) => Promise<void>) {
   // Validate user is login-ed
   if (!uid) {
     throw new Error('Not authenticated')

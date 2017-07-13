@@ -3,5 +3,6 @@ import {profileSelector} from './profile'
 
 export const fcmTokenSelector = createSelector(
   profileSelector,
-  profile => profile ? profile.fcmToken : null
+  (profile: any): string | null =>
+    profile ? profile.fcmToken : null
 )
