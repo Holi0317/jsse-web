@@ -7,6 +7,7 @@ const middlewares = []
 
 // Redux-logger plugin
 if (process.env.NODE_ENV === 'development') {
+  // tslint:disable-next-line:no-var-requires
   const {createLogger} = require('redux-logger')
   const logger = createLogger({
     collapsed: true

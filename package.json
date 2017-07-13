@@ -33,6 +33,9 @@
   },
   "homepage": "https://github.com/Holi0317/jsse-web#readme",
   "devDependencies": {
+    "@types/node": "8.0.11",
+    "@types/react": "15.0.38",
+    "@types/react-dom": "15.5.1",
     "awesome-typescript-loader": "3.2.1",
     "babel-core": "6.25.0",
     "babel-eslint": "7.2.3",
