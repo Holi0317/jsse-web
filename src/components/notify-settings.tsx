@@ -7,7 +7,7 @@ import {PermissionStatus} from './notification/permission-status'
 import {RemoteFcmTokenDisplay} from './notification/remote-fcm-token-display'
 import {NotificationRegister} from './notification/notification-register'
 
-const isSupported = window.PushManager && navigator.serviceWorker && Notification
+const isSupported = PushManager && navigator.serviceWorker && Notification
 
 export function NotifySettings() {
   if (!isSupported) {

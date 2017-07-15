@@ -1,4 +1,5 @@
 import {IFootageState} from './reducer/footage'
+import * as moment from 'moment'
 
 export interface IFootage {
   time: number // Unix timestamp
@@ -10,12 +11,17 @@ export interface ILog {
   message: string
 }
 
+export interface IMomentLog {
+  time: moment.Moment
+  message: string
+}
+
 export interface IRootState {
   firebase: any
   footage: IFootageState
 }
 
-export interface IDropdownOptions<T> {
+export interface IDropdownOptions {
   label: string
-  value: T
+  value: string
 }

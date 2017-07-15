@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-function _isLocalhost(hostname) {
+function _isLocalhost(hostname: string) {
   // !! coerces the logical expression to evaluate to the values true or false.
   return !!(hostname === 'localhost' ||
   // [::1] is the IPv6 localhost address.
@@ -10,18 +10,18 @@ function _isLocalhost(hostname) {
 }
 
 export class HttpsRedirect extends React.Component {
-  shouldComponentUpdate() {
+  public shouldComponentUpdate() {
     return false
   }
 
-  componentWillMount() {
+  public componentWillMount() {
     if (window.location.protocol === 'http:' && !_isLocalhost(window.location.hostname)) {
       // Redirect to https: if we're currently using http: and we're not on localhost.
       window.location.href = 'https:' + window.location.href.substring(window.location.protocol.length)
     }
   }
 
-  render() {
+  public render() {
     return null
   }
 }

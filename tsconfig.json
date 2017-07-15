@@ -1,15 +1,21 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
-    "noImplicitAny": false,
+    "module": "es2015",
+    "moduleResolution": "node",
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "strictNullChecks": true,
     "sourceMap": true,
     "target": "es2015",
     "jsx": "react",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "typeRoots": [
       "node_modules/@types"
     ]
   },
   "include": [
-    "src/**/*.ts"
+    "src/**/*.ts",
+    "custom-typings/*.d.ts"
   ]
 }

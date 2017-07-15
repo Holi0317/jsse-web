@@ -1,4 +1,5 @@
-import {applyMiddleware, compose, createStore} from 'redux'
+import {applyMiddleware, createStore} from 'redux'
+import flowRight from 'lodash-es/flowRight'
 import * as firebase from 'firebase/app'
 import {reducer} from './reducer'
 import {reactReduxFirebase} from 'react-redux-firebase'
@@ -21,7 +22,7 @@ const firebaseConfig = {
   userProfile: 'users'
 }
 
-export const store = (compose as any)(
+export const store = flowRight(
   (reactReduxFirebase as any)(firebase, firebaseConfig),
   applyMiddleware(...middlewares)
 )(createStore)(reducer)

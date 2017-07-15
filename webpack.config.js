@@ -3,6 +3,7 @@ const path = require('path')
 const webpack = require('webpack')
 const env = require('./webpack-cfg/env')
 const babel = require('./webpack-cfg/babel')
+const ts = require('./webpack-cfg/typescript')
 const htmlLoader = require('./webpack-cfg/html-loader')
 const postCssLoader = require('./webpack-cfg/postcss')
 const fontsImagesLoader = require('./webpack-cfg/fonts-images-loader')
@@ -33,6 +34,7 @@ module.exports = merge.smart(
   alias,
 
   babel,
+  ts,
   htmlLoader,
   postCssLoader,
   fontsImagesLoader,

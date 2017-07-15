@@ -4,19 +4,18 @@ import runtime from 'serviceworker-webpack-plugin/lib/runtime'
 const messaging = firebase.messaging()
 
 export class RegSW extends React.Component {
-  async componentWillMount() {
+  public async componentWillMount() {
     if ('serviceWorker' in navigator) {
-      const registration = runtime.register()
-      const reg = await registration
-      messaging.useServiceWorker(reg)
+      const registration = await runtime.register()
+      messaging.useServiceWorker(registration)
     }
   }
 
-  shouldComponentUpdate() {
+  public shouldComponentUpdate() {
     return false
   }
 
-  render() {
+  public render() {
     return null
   }
 }

@@ -34,9 +34,12 @@
   "homepage": "https://github.com/Holi0317/jsse-web#readme",
   "devDependencies": {
     "@types/lodash-es": "4.14.5",
-    "@types/node": "8.0.11",
+    "@types/material-ui": "0.17.16",
+    "@types/node": "8.0.13",
     "@types/react": "15.0.38",
     "@types/react-dom": "15.5.1",
+    "@types/react-redux": "4.4.46",
+    "@types/react-tap-event-plugin": "0.0.30",
     "awesome-typescript-loader": "3.2.1",
     "babel-core": "6.25.0",
     "babel-eslint": "7.2.3",
@@ -55,7 +58,7 @@
     "del-cli": "1.1.0",
     "eslint": "4.2.0",
     "eslint-plugin-react": "7.1.0",
-    "extract-text-webpack-plugin": "2.1.2",
+    "extract-text-webpack-plugin": "3.0.0",
     "html-webpack-plugin": "2.29.0",
     "postcss-cli": "4.1.0",
     "postcss-import": "10.0.0",
@@ -69,8 +72,8 @@
     "typescript": "2.4.1",
     "uglify-es": "3.0.24",
     "uglifyjs-webpack-plugin": "1.0.0-beta.1",
-    "webpack": "3.1.0",
-    "webpack-bundle-analyzer": "2.8.2",
+    "webpack": "3.3.0",
+    "webpack-bundle-analyzer": "2.8.3",
     "webpack-dev-server": "2.5.1",
     "webpack-md5-hash": "0.0.5",
     "webpack-merge": "4.1.0"
@@ -85,7 +88,7 @@
     "react-redux": "5.0.5",
     "react-redux-firebase": "canary",
     "react-tap-event-plugin": "2.0.1",
-    "redux": "3.7.1",
+    "redux": "3.7.2",
     "redux-logger": "3.0.6",
     "reselect": "3.0.1"
   }
