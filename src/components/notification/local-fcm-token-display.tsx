@@ -2,15 +2,16 @@ import * as React from 'react'
 import * as firebase from 'firebase/app'
 const messaging = firebase.messaging()
 
+interface ILocalFcmTokenDisplayState {
+  token: string | null
+}
+
 export class LocalFcmTokenDisplay extends React.Component {
-  constructor() {
-    super(...arguments)
-    this.state = {
-      token: null
-    }
+  public state: ILocalFcmTokenDisplayState = {
+    token: null
   }
 
-  async componentWillMount() {
+  public async componentWillMount() {
     if ('serviceWorker' in navigator) {
       await navigator.serviceWorker.ready
       const token = await messaging.getToken()
@@ -20,7 +21,7 @@ export class LocalFcmTokenDisplay extends React.Component {
     }
   }
 
-  render() {
+  public render() {
     const {token} = this.state
     if (!token) {
       return <div>Loading local FCM Token.</div>

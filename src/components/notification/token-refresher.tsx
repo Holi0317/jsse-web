@@ -1,19 +1,26 @@
 import * as React from 'react'
+import flowRight from 'lodash-es/flowRight'
 import {firebaseConnect} from 'react-redux-firebase'
-import * as firebase from 'firebase/app'
+import * as firebase_ from 'firebase/app'
 import {uidSelector} from '../../selectors/uid'
 import {connect} from 'react-redux'
 import {delay} from '../../utils'
-const messaging = firebase.messaging()
+import {IRootState} from '../../types'
+const messaging = firebase_.messaging()
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state: IRootState) => ({
   uid: uidSelector(state)
 })
 
-@firebaseConnect()
-@connect(mapStateToProps)
-export class TokenRefresher extends React.Component {
-  async componentWillMount() {
+interface ITokenRefresherProps {
+  firebase: any
+  uid: string
+}
+
+class TokenRefresherImpl extends React.Component {
+  public props: ITokenRefresherProps
+
+  public async componentWillMount() {
     const {firebase, uid} = this.props
 
     messaging.onTokenRefresh(async () => {
@@ -36,6 +43,7 @@ export class TokenRefresher extends React.Component {
         await firebase.set(`users/${uid}/fcmToken`, token)
       } else {
         await delay(5000)
+        // Get new UID from new props
         const newUid = this.props.uid
         if (uid) {
           await firebase.set(`users/${newUid}/fcmToken`, token)
@@ -44,7 +52,12 @@ export class TokenRefresher extends React.Component {
     }
   }
 
-  render() {
+  public render() {
     return null
   }
 }
+
+export const TokenRefresher = flowRight(
+  firebaseConnect(),
+  connect(mapStateToProps)
+)(TokenRefresherImpl)
