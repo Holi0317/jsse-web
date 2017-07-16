@@ -38,7 +38,7 @@ interface ITimelineJumpState {
   error: string | null
 }
 
-export class TimelineJumpImpl extends React.Component {
+class TimelineJumpImpl extends React.Component {
   public props: ITimelineJumpProps
   public state: ITimelineJumpState = {
     error: null

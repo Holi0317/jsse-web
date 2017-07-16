@@ -2,7 +2,7 @@ import * as React from 'react'
 import {firebaseConnect} from 'react-redux-firebase'
 import FlatButton from 'material-ui/FlatButton'
 
-export class LogoutImpl extends React.Component {
+class LogoutImpl extends React.Component {
   public props: {
     firebase: any
   }
