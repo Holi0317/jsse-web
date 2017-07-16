@@ -1,6 +1,8 @@
 import {IFootageState} from './reducer/footage'
 import * as moment from 'moment'
 
+export type Dispatch = (action: any) => void
+
 export interface IFootage {
   time: number // Unix timestamp
   path: string // Google cloud store path

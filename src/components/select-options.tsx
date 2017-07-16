@@ -5,7 +5,7 @@ import {IDropdownOptions} from '../types'
 interface ISelectOptionsProps {
   options: IDropdownOptions[]
   label: string
-  selected: string
+  selected: string | null
   className: string
 
   onChange: EventHandler<ChangeEvent<HTMLSelectElement>>

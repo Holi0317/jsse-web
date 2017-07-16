@@ -1,28 +1,45 @@
 import * as React from 'react'
+import flowRight from 'lodash-es/flowRight'
 import {connect} from 'react-redux'
 import {firebaseConnect} from 'react-redux-firebase'
+import * as moment from 'moment'
 import FlatButton from 'material-ui/FlatButton'
 import {dispFootageTimeSelector} from '../../selectors/disp-footage-time'
 import {availableTimeSelector} from '../../selectors/available-time'
 import styles from './playback-runner.css'
+import {Dispatch, IRootState} from '../../types'
 
-const mapStateToProps = state => ({
-  dispTime: dispFootageTimeSelector(state), // Moment | null
-  availableTime: availableTimeSelector(state) // UnixTime[]
+const mapStateToProps = (state: IRootState) => ({
+  availableTime: availableTimeSelector(state),
+  dispTime: dispFootageTimeSelector(state)
 })
 
-const mapDispatchToProps = dispatch => ({
-  changeTime(newTime) { // UnixTime
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  changeTime(newTime: number) { // UnixTime
     dispatch({type: 'FOOTAGE/SET_DISP_TIME', dispTime: newTime})
   }
 })
 
-@firebaseConnect([
-  '/footage'
-])
-@connect(mapStateToProps, mapDispatchToProps)
-export class PlaybackRunner extends React.Component {
-  back = () => {
+interface IPlaybackRunnerProps {
+  availableTime: number[]
+  dispTime: moment.Moment | null
+
+  changeTime: (newTime: number) => void
+}
+
+class PlaybackRunnerImpl extends React.Component {
+  public props: IPlaybackRunnerProps
+
+  public render() {
+    return (
+      <div>
+        <FlatButton label="<-" onClick={this.back} />
+        <FlatButton label="->" onClick={this.forward} className={styles.forwardBtn} />
+      </div>
+    )
+  }
+
+  private back = () => {
     const {dispTime, availableTime, changeTime} = this.props
     if (dispTime === null) {
       changeTime(availableTime[availableTime.length - 2])
@@ -37,7 +54,7 @@ export class PlaybackRunner extends React.Component {
     changeTime(availableTime[index - 1])
   }
 
-  forward = () => {
+  private forward = () => {
     const {dispTime, availableTime, changeTime} = this.props
     if (dispTime === null) {
       return
@@ -50,13 +67,11 @@ export class PlaybackRunner extends React.Component {
     }
     changeTime(availableTime[index + 1])
   }
-
-  render() {
-    return (
-      <div>
-        <FlatButton label="<-" onClick={this.back} />
-        <FlatButton label="->" onClick={this.forward} className={styles.forwardBtn} />
-      </div>
-    )
-  }
 }
+
+export const PlaybackRunner = flowRight(
+  firebaseConnect([
+    '/footage'
+  ]),
+  connect(mapStateToProps, mapDispatchToProps)
+)(PlaybackRunnerImpl)

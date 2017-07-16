@@ -2,7 +2,7 @@ import * as React from 'react'
 import * as firebase from 'firebase/app'
 const storage = firebase.storage()
 
-interface IFBStorageImageProps {
+interface IFBStorageImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   path: string
 }
 
