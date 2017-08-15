@@ -1,8 +1,10 @@
 import * as React from 'react'
 import {ChangeEvent, EventHandler} from 'react'
 import flowRight from 'lodash-es/flowRight'
+import * as moment from 'moment'
 import {connect} from 'react-redux'
 import {firebaseConnect} from 'react-redux-firebase'
+import DatePicker from 'react-datepicker'
 import {availableDatesSelector} from '../../selectors/available-dates'
 import {tmpDateSelector} from '../../selectors/tmp-date'
 import {availableHoursSelector} from '../../selectors/available-hours'
@@ -10,6 +12,7 @@ import {SelectOptions} from '../select-options'
 import {tmpHourSelector} from '../../selectors/tmp-hour'
 import {Dispatch, IDropdownOptions, IRootState} from '../../types'
 import styles from './time-selector.css'
+import 'react-datepicker/dist/react-datepicker-cssmodules.css'
 
 const mapStateToProps = (state: IRootState) => ({
   dates: availableDatesSelector(state),
@@ -19,9 +22,9 @@ const mapStateToProps = (state: IRootState) => ({
 })
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  setDay(event: ChangeEvent<HTMLInputElement>) {
-    const {value} = event.target
-    dispatch({type: 'FOOTAGE/SET_TMP_DATE', tmpDate: value})
+  setDay(value: moment.Moment) {
+    const tmpDate = value.format('YYYY-MM-DD')
+    dispatch({type: 'FOOTAGE/SET_TMP_DATE', tmpDate})
   },
   setHour(event: ChangeEvent<HTMLSelectElement>) {
     const {value} = event.target
@@ -30,10 +33,10 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
 })
 
 interface ITimeSelectorProps {
-  dates: {max: string, min: string}
+  dates: moment.Moment[]
   hours: IDropdownOptions[]
   tmpHour: string | null
-  tmpDate: string | undefined
+  tmpDate: moment.Moment
 
   setDay: EventHandler<ChangeEvent<HTMLInputElement>>
   setHour: EventHandler<ChangeEvent<HTMLSelectElement>>
@@ -42,7 +45,7 @@ interface ITimeSelectorProps {
 function TimeSelectorImpl({dates, hours, tmpHour, tmpDate, setDay, setHour}: ITimeSelectorProps) {
   return (
     <span>
-        <input type="date" className={styles.dateInput} {...dates} value={tmpDate} onChange={setDay} />
+        <DatePicker selected={tmpDate} includeDates={dates} onChange={setDay} />
         <SelectOptions label="Hour" className={styles.select} options={hours} onChange={setHour} selected={tmpHour} />
       </span>
   )

@@ -1,6 +1,4 @@
 import {createSelector} from 'reselect'
-import head from 'lodash-es/head'
-import last from 'lodash-es/last'
 import * as moment from 'moment'
 import {availableTimeSelector} from './available-time'
 
@@ -17,13 +15,6 @@ export const availableDatesSelector = createSelector(
   availableTimeSelector,
   times => {
     const momented = times.map(time => moment(time))
-    const dates = uniqDates(momented)
-
-    const min = (head(dates) || moment()).format('YYYY-MM-DD')
-    const max = (last(dates) || moment()).format('YYYY-MM-DD')
-    return {
-      max,
-      min
-    }
+    return uniqDates(momented)
   }
 )
