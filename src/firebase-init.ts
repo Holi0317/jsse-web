@@ -10,7 +10,7 @@ export const config = {
   databaseURL: 'https://jsse-2017.firebaseio.com',
   messagingSenderId: '277806525803',
   projectId: 'jsse-2017',
-  storageBucket: 'jsse-2017.appspot.com'
+  storageBucket: 'turbo-chainsaw'
 }
 
 firebase.initializeApp(config)
