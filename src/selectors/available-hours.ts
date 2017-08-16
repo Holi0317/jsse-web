@@ -8,9 +8,8 @@ import {tmpDateSelector} from './tmp-date'
 export const availableHoursSelector = createSelector(
   availableTimeSelector,
   tmpDateSelector,
-  (times: number[], tmpDate: moment.Moment): IDropdownOptions[] => {
+  (times: moment.Moment[], tmpDate: moment.Moment): IDropdownOptions[] => {
     const matchedTimes = times
-      .map(time => moment(time)) // Change all object to moment object
       .filter(time => time.isSame(tmpDate, 'day')) // Filter: Only same date can keep here
     const uniqTimes: typeof matchedTimes = uniqWith(matchedTimes,
       (a: moment.Moment, b: moment.Moment) => a.isSame(b, 'hour')
