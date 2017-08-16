@@ -1,5 +1,6 @@
 import * as React from 'react'
 import flowRight from 'lodash-es/flowRight'
+import last from 'lodash-es/last'
 import {connect} from 'react-redux'
 import {firebaseConnect} from 'react-redux-firebase'
 import * as moment from 'moment'
@@ -15,16 +16,16 @@ const mapStateToProps = (state: IRootState) => ({
 })
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  changeTime(newTime: number) { // UnixTime
-    dispatch({type: 'FOOTAGE/SET_DISP_TIME', dispTime: newTime})
+  changeTime(newTime: moment.Moment) {
+    dispatch({type: 'FOOTAGE/SET_DISP_TIME', dispTime: newTime.valueOf()})
   }
 })
 
 interface IPlaybackRunnerProps {
-  availableTime: number[]
-  dispTime: moment.Moment | null
+  availableTime: moment.Moment[]
+  dispTime: moment.Moment
 
-  changeTime: (newTime: number) => void
+  changeTime: (newTime: moment.Moment) => void
 }
 
 class PlaybackRunnerImpl extends React.Component {
@@ -41,13 +42,7 @@ class PlaybackRunnerImpl extends React.Component {
 
   private back = () => {
     const {dispTime, availableTime, changeTime} = this.props
-    if (dispTime === null) {
-      changeTime(availableTime[availableTime.length - 2])
-      return
-    }
-
-    const unixDispTime = dispTime.valueOf()
-    const index = availableTime.indexOf(unixDispTime)
+    const index = availableTime.findIndex(time => time.isSame(dispTime))
     if (index <= 0) {
       return
     }
@@ -56,12 +51,16 @@ class PlaybackRunnerImpl extends React.Component {
 
   private forward = () => {
     const {dispTime, availableTime, changeTime} = this.props
-    if (dispTime === null) {
+    if (availableTime.length === 0) {
       return
     }
 
-    const unixDispTime = dispTime.valueOf()
-    const index = availableTime.indexOf(unixDispTime)
+    const latestTime = last(availableTime)!  // The array is not empty here. It is safe to assert last will return an element
+    if (dispTime.isSame(latestTime)) {
+      return
+    }
+
+    const index = availableTime.findIndex(time => time.isSame(dispTime))
     if (index === availableTime.length - 1) {
       return
     }
