@@ -67,6 +67,7 @@
     "webpack-merge": "4.1.0"
   },
   "dependencies": {
+    "@types/react-datepicker": "^0.52.0",
     "ajv": "^5.2.2",
     "firebase": "4.2.0",
     "lodash-es": "4.17.4",

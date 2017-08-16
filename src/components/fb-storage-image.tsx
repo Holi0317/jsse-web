@@ -36,11 +36,10 @@ export class FBStorageImage extends React.Component {
     return null
   }
 
-  private update = (path: string) => {
-    storage.ref(path).getDownloadURL().then(url => {
-      this.setState({
-        src: url
-      })
+  private update = async (path: string) => {
+    const url = await storage.ref(path).getDownloadURL()
+    this.setState({
+      src: url
     })
   }
 }

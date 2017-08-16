@@ -38,7 +38,7 @@ interface ITimeSelectorProps {
   tmpHour: string | null
   tmpDate: moment.Moment
 
-  setDay: EventHandler<ChangeEvent<HTMLInputElement>>
+  setDay: (value: moment.Moment) => void
   setHour: EventHandler<ChangeEvent<HTMLSelectElement>>
 }
 
