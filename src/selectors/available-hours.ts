@@ -2,19 +2,16 @@ import {createSelector} from 'reselect'
 import uniqWith from 'lodash-es/uniqWith'
 import * as moment from 'moment'
 import {availableTimeSelector} from './available-time'
-import {IDropdownOptions, IRootState} from '../types'
+import {IDropdownOptions} from '../types'
+import {tmpDateSelector} from './tmp-date'
 
 export const availableHoursSelector = createSelector(
   availableTimeSelector,
-  (state: IRootState) => state.footage.tmpDate,
-  (times: number[], tmpDate: string | null): IDropdownOptions[] => {
-    if (!tmpDate) {
-      return []
-    }
-    const day = moment(tmpDate)
+  tmpDateSelector,
+  (times: number[], tmpDate: moment.Moment): IDropdownOptions[] => {
     const matchedTimes = times
       .map(time => moment(time)) // Change all object to moment object
-      .filter(time => time.isSame(day, 'day')) // Filter: Only same date can keep here
+      .filter(time => time.isSame(tmpDate, 'day')) // Filter: Only same date can keep here
     const uniqTimes: typeof matchedTimes = uniqWith(matchedTimes,
       (a: moment.Moment, b: moment.Moment) => a.isSame(b, 'hour')
     )
