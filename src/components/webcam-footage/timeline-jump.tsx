@@ -10,11 +10,13 @@ import {footageSelector} from '../../selectors/footages'
 import {tmpDateSelector} from '../../selectors/tmp-date'
 import {tmpHourSelector} from '../../selectors/tmp-hour'
 import {Dispatch, IFootage, IRootState} from '../../types'
+import {tmpMinuteSelector} from '../../selectors/tmp-minute'
 
 const mapStateToProps = (state: IRootState) => ({
   footages: footageSelector(state),
   tmpDate: tmpDateSelector(state),
-  tmpHour: tmpHourSelector(state)
+  tmpHour: tmpHourSelector(state),
+  tmpMinute: tmpMinuteSelector(state)
 })
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
@@ -28,8 +30,9 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
 
 interface ITimelineJumpProps {
   footages: IFootage[]
-  tmpDate: string | null
-  tmpHour: string | null
+  tmpDate: moment.Moment
+  tmpHour: string
+  tmpMinute: string
 
   changeTime: (newTime: number) => void
 }
@@ -68,18 +71,20 @@ class TimelineJumpImpl extends React.Component {
   }
 
   private changeTime = () => {
-    const {footages, tmpDate, tmpHour, changeTime} = this.props
+    const {footages, tmpDate, tmpHour, tmpMinute, changeTime} = this.props
 
-    if (!(tmpDate && tmpHour)) {
+    if (!(tmpHour && tmpMinute)) {
       this.setState({
         error: 'You must specify both date and hour before jump timeline'
       })
       return
     }
 
-    const momented = footages.map(footage => moment(footage.time))
-    const desiredTime = moment(`${tmpDate} ${tmpHour}`, 'YYYY-MM-DD HH')
-    const time = momented.find(t => t.isSame(desiredTime, 'hour'))
+    const momentedFootages = footages.map(footage => moment(footage.time))
+    const desiredTime = moment(tmpDate).add(+tmpHour, 'h').add(+tmpMinute, 'm')
+    const time = momentedFootages.find(t => t.isSame(desiredTime, 'minute'))
+
+    console.log(momentedFootages, desiredTime)
 
     if (!time) {
       this.setState({
