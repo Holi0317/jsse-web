@@ -5,6 +5,7 @@ import {firebaseConnect} from 'react-redux-firebase'
 import {statusSelector} from '../selectors/status'
 import {haveMailSelector} from '../selectors/have-mail'
 import {IRootState} from '../types'
+import styles from './status.css'
 
 const mapStateToProps = (state: IRootState) => ({
   haveMail: haveMailSelector(state),
@@ -23,9 +24,10 @@ class StatusImpl extends React.Component {
 
   public render() {
     const {status, haveMail} = this.props
+    const statusClass = status === 'online' ? styles.online : styles.offline
     return (
       <div>
-        <div>Status: {status}</div>
+        <div>Status: <span className={statusClass}>{status}</span></div>
         <div>{haveMail ? 'You have mail in your mailbox' : 'No mail exist in your mailbox'}</div>
       </div>
     )
