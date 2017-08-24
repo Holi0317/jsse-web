@@ -21,6 +21,15 @@
       </svg>
     </div>
   </div>
+  <div id="error-report"></div>
 </div>
+<script>
+window.onerror = function(message, source, lineno, colno, error) {
+  var q = document.querySeletor('#error-report')
+  if (q) {
+    q.innerText = error.message
+  }
+}
+</script>
 </body>
 </html>
