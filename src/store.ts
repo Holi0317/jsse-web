@@ -18,7 +18,7 @@ if (process.env.NODE_ENV === 'development') {
 
 // Firebase plugin
 const firebaseConfig = {
-  enableLogging: true,
+  enableLogging: process.env.NODE_ENV === 'development',
   userProfile: 'users'
 }
 
