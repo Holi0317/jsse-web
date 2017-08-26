@@ -2,9 +2,9 @@ import * as React from 'react'
 import flowRight from 'lodash-es/flowRight'
 import {connect} from 'react-redux'
 import {firebaseConnect} from 'react-redux-firebase'
-import {statusSelector} from '../selectors/status'
-import {haveMailSelector} from '../selectors/have-mail'
-import {IRootState} from '../types'
+import {statusSelector} from '../../selectors/status'
+import {haveMailSelector} from '../../selectors/have-mail'
+import {IRootState} from '../../types'
 import styles from './status.css'
 
 const mapStateToProps = (state: IRootState) => ({

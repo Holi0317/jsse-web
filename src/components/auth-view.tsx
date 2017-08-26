@@ -1,6 +1,6 @@
 import * as React from 'react'
 import {Logout} from './auth/logout'
-import {NotifySettings} from './notify-settings'
+import {NotificationSettings} from './notification'
 import {Log} from './log'
 import {Status} from './status'
 import {Webcam} from './webcam'
@@ -15,7 +15,7 @@ export function AuthView() {
       <h3>Mail Log</h3>
       <Log />
       <h3>Notification settings</h3>
-      <NotifySettings />
+      <NotificationSettings />
       <h3>Authentication</h3>
       <Logout />
     </div>

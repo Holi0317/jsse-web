@@ -2,9 +2,9 @@ import * as React from 'react'
 import flowRight from 'lodash-es/flowRight'
 import {connect} from 'react-redux'
 import {firebaseConnect} from 'react-redux-firebase'
-import {LogEntry} from './log/log-entry'
-import {momentedLogsSelector} from '../selectors/momented-logs'
-import {IMomentLog, IRootState} from '../types'
+import {LogEntry} from './log-entry'
+import {momentedLogsSelector} from '../../selectors/momented-logs'
+import {IMomentLog, IRootState} from '../../types'
 
 const mapStateToProps = (state: IRootState) => ({
   logs: momentedLogsSelector(state)
