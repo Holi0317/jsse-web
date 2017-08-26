@@ -14,6 +14,9 @@ export class NotificationDisplay extends React.Component {
   public componentWillMount() {
     messaging.onMessage((payload: any) => {
       console.log('Received message. payload:', payload)
+      const n = new Notification('Mail status has updated', {
+        body: payload.notification.body
+      })
       this.setState({
         message: payload.notification.body
       })
