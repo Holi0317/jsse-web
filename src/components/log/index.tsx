@@ -34,7 +34,7 @@ function LogImpl({logs}: ILogProps) {
 
 export const Log = flowRight(
   firebaseConnect([
-    '/log#limitToFirst=50'
+    '/log#limitToLast=50#orderByChild=time'
   ]),
   connect(mapStateToProps)
 )(LogImpl)
